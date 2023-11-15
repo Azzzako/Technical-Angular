@@ -1,0 +1,46 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav mode="push" [ngStyle]="{width: '250px'}" position="end">
+    <mat-toolbar>
+      <span class="text-center">Hola, <span *ngFor="let data of person">{{data.name}} {{data.lastName}}</span></span>
+      <span class="spacer"></span>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <mat-list-item *ngFor="let item of sidebarItems" (click)="sidenav.toggle()">
+        <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
+        {{item.label}}
+      </mat-list-item>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-toolbar color="primary">
+    <img [src]="'../assets/static.png'" alt="logo" [ngStyle]="{width: '245px'}">
+    <span class="spacer"></span>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <div>
+    <info-user [person]="person" [email]="email"
+      [incompletedCourses]="incompletedCourses" [courses]="courses"></info-user>
+  </div>
+
+
+  <div class="container">
+    <shared-searchbar (onValue)="filterInput($event)"></shared-searchbar>
+  </div>
+
+  <ng-template #tmplInscriptions>
+    <div class="container p-2">
+      <list-cursos></list-cursos>
+    </div>
+  </ng-template>
+
+
+
+  <div class="container p-2" *ngIf="inscriptions.length; else tmplInscriptions">
+    <list-cursos></list-cursos>
+  </div>
+</mat-sidenav-container>

@@ -1,0 +1,13 @@
+<div class="d-flex flex-column gap-3 p-4 justify-content-center align-items-center">
+  <mat-form-field class="w-100 pt-4">
+    <mat-label>Buscar Curso</mat-label>
+    <input matInput type="text" placeholder="Ex. Tecnologia" (keyup)="emitSearch(textInput.value)" #textInput
+      [value]="searchInput" />
+  </mat-form-field>
+
+  <mat-chip-listbox>
+    <mat-chip-option (click)="selectedSortBy('az')">[ A - Z ]</mat-chip-option>
+    <mat-chip-option (click)="selectedSortBy('complete')" color="accent">Completos</mat-chip-option>
+    <mat-chip-option (click)="selectedSortBy('incomplete')" color="warn">Incompletos</mat-chip-option>
+  </mat-chip-listbox>
+</div>

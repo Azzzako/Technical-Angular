@@ -1,0 +1,17 @@
+<div class="row d-flex justify-content-center gap-4 m-0">
+  <mat-card class="card col-lg-3 col-md-6 col-sm-12 rounded-4 d-flex justify-content-center align-items-center gap-3"
+    *ngFor="let curso of inscriptions" [ngStyle]="{background: curso.course.sector.colorTheme}">
+    <mat-card-header>
+      <mat-card-title class="text-center">{{curso.course.name}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-lg-image [src]="curso.course.imageUrl" [alt]="curso.course.name">
+    <mat-card-subtitle class="font-monospace text-center">{{curso.course.sector.name}}</mat-card-subtitle>
+    <mat-progress-bar mode="determinate" [value]="curso.advance"></mat-progress-bar>
+    <div class="d-flex flex-column gap-3 text-center">
+      <span> Te inscribiste: {{curso.inscripcionDate | date: 'MMM dd, yyyy' }}</span>
+      <span *ngIf="curso.advance === 100"> Te certificaste: {{curso.certificationDate | date: 'MMM dd, yyyy'}}</span>
+      <button mat-flat-button color="primary" *ngIf="curso.advance === 100">Descargar Certificado</button>
+      <button mat-flat-button *ngIf="curso.advance < 100">Continuar Curso</button>
+    </div>
+  </mat-card>
+</div>
